@@ -30,7 +30,7 @@ class CRUD:
         parameters = {"nome":nome}
         return self.db.execute_query(query,parameters)
 
-    def relationship_query(self,nome1,nome2,relationship):
+    def relationship_query(self,nome1,nome2,relationship): #verifica se existe uim relacionamento entre duas pessoas
         query = "match (p1:Pessoa{nome:$nome1})<-[i:"+relationship+"]->(p2:Pessoa{nome:$nome2}) return i"
         parameters = {"nome1": nome1, "nome2": nome2}
         if self.db.execute_query(query, parameters):
@@ -38,6 +38,6 @@ class CRUD:
         else:
             return False
 
-    def show_occupation(self):
+    def show_occupation(self): #mostra as profissoes de todas as pessoas
         query = "match (n:Pessoa) return n.profissao"
         print(self.db.execute_query(query))

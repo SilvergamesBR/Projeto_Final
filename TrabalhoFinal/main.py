@@ -7,16 +7,17 @@ CRUD = crud.CRUD(db)
 
 db.drop_all()
 
+CRUD.create("Marcia",1975,"Comerciante")
+CRUD.create("Haroldo",1970,"Fotografo")
+CRUD.create("Jasmim",1999,"Medica")
 CRUD.create("Ruberio",2001,"Uber")
-CRUD.create("Marcia",2000,"Influencer")
-CRUD.create("Haroldo",1980,"Modelo de Onlyfans")
-CRUD.create("Jasmim",1999,"Dona da Blaze")
 
-print(CRUD.read("Haroldo"))
-
-CRUD.create_relationship("SE_RELACIONA","Haroldo","Ruberio")
-
-CRUD.delete("Marcia")
+CRUD.create_relationship("CASADO_COM","Haroldo","Marcia")
+CRUD.create_relationship("FILHO_DE","Haroldo","Ruberio")
+CRUD.create_relationship("FILHO_DE","Haroldo","Jasmim")
+CRUD.create_relationship("FILHO_DE","Marcia","Ruberio")
+CRUD.create_relationship("FILHO_DE","Marcia","Jasmim")
+CRUD.create_relationship("IRMAO_DE","Jasmim","Ruberio")
 
 pessoa_cli = CLI.PersonCLI(CRUD)
 pessoa_cli.run()
